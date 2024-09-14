@@ -31,13 +31,25 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Third Party Applications
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'corsheaders',
+    
+    # Django Default Applications
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    #Custom Applications
+    'authentication',
 ]
+
+AUTH_USER_MODEL = 'authentication.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
