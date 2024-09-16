@@ -7,5 +7,6 @@
 5. api/v1/auth/user/
 6. api/v1/auth/password/change/
 7. api/v1/auth/registration/
-
+### For User Profile Registration
+1. 
 ### For Futsal And Others

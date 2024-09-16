@@ -49,6 +49,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    # Custom Applications
+    'userprofile',
+    'futsal',
+    'api',
+    
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
