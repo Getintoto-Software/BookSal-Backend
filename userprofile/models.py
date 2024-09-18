@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class UserProfile(models.Model): 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     profile_picture = models.ImageField(upload_to='images/profile_pictures/', blank=True, null=True)
     
     # Futsal will upload at least 1 image and at most 4 images
