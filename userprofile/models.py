@@ -28,6 +28,8 @@ class UserProfile(models.Model):
     restaurant = models.BooleanField(default=False)
     wifi = models.BooleanField(default=False)
     
+    futsal_description = models.TextField(default="")
+    
     # Date Created and Updated
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
