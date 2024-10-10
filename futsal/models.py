@@ -11,7 +11,7 @@ class Booking(models.Model):
     booking_date = models.DateField()
     booking_start_time = models.TimeField()
     booking_end_time = models.TimeField()
-    booking_status = models.BooleanField(default=False)
+    booking_status = models.BooleanField(default=False) # On false display pending. On True display confirmed
     
     
     date_created = models.DateTimeField(auto_now_add=True)
