@@ -8,21 +8,21 @@ from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 #import session user
 from django.contrib.auth.models import User
 
-
+# User Profile ViewSet
+class UserProfile(viewsets.ModelViewSet):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileModelSerializer
+    permission_classes = [IsAuthenticated]
 class UserProfileCreateView(CreateAPIView): 
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileModelSerializer
     permission_classes = [IsAuthenticated]
-    
     
 class UserProfileRetrieveView(RetrieveAPIView): 
     serializer_class = UserProfileModelSerializer
     queryset = UserProfile.objects.all()
     permission_classes = [AllowAny]
     lookup_field = 'user'
-    
-    
-    
     
 class UserProfileUpdateView(UpdateAPIView): 
     # Only process the request if the user making the request is session user
@@ -35,8 +35,6 @@ class UserProfileUpdateView(UpdateAPIView):
     
     def perform_update(self, serializer):
         serializer.save(user=self.request.user)
-    
-    
 
     
 class UserProfileDeleteView(DestroyAPIView): 
@@ -49,3 +47,4 @@ class UserProfileListView(ListAPIView):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileModelSerializer
     permission_classes = [AllowAny]
+    
