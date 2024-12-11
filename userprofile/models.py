@@ -1,38 +1,32 @@
 from django.db import models
 from django.contrib.auth.models import User
+from autoslug import AutoSlugField
+import uuid
 
-class UserProfile(models.Model): 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    profile_picture = models.ImageField(upload_to='images/profile_pictures/', blank=True, null=True)
-    
-    # Futsal will upload at least 1 image and at most 4 images
-    futsal_image_1 = models.ImageField(upload_to='images/futsal_images/')
-    futsal_image_2 = models.ImageField(upload_to='images/futsal_images/', blank=True, null=True)
-    futsal_image_3 = models.ImageField(upload_to='images/futsal_images/', blank=True, null=True)
-    futsal_image_4 = models.ImageField(upload_to='images/futsal_images/', blank=True, null=True)
-    
-    # Futsal will need location, google maps link
-    location = models.CharField(max_length=400)
-    google_maps_link = models.URLField(blank=True, null=True)
-    
-    # How many a side?
-    a_side = models.CharField(max_length=10)
-    
-    # How many grounds? 
-    grounds = models.IntegerField()
-    
-    # Other Facilities 
-    shower_facility = models.BooleanField(default=False)
-    parking_space = models.BooleanField(default=False)
-    changing_room = models.BooleanField(default=False)
-    restaurant = models.BooleanField(default=False)
-    wifi = models.BooleanField(default=False)
-    
-    futsal_description = models.TextField(default="")
-    
+
+class UserProfile(models.Model):
+    # General User Information
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, primary_key=True)
+    # use the email address to verify user. Only verified user can become futsal admin.
+    email_address = models.EmailField()
+    profile_picture = models.ImageField(
+        upload_to='images/profile_pictures/', blank=True, null=True)
+    bio = models.TextField(max_length=500, blank=True, null=True)
+
+    # User Contact Information
+    address = models.CharField(max_length=200, blank=True, null=True)
+    city = models.CharField(max_length=100, blank=True, null=True)
+    country = models.CharField(max_length=100, blank=True, null=True)
+    zip_code = models.CharField(max_length=10, blank=True, null=True)
+
     # Date Created and Updated
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-    
+
+    # User Verification
+    is_verified = models.BooleanField(default=False)
+    is_futsal_admin = models.BooleanField(default=False)
+
     def __str__(self):
         return self.user.username
