@@ -25,6 +25,7 @@ urlpatterns = [
     path('api/v1/auth/', include(auth_urls)),
     path('api/v1/auth/registration/', include('dj_rest_auth.registration.urls')),
     path('api/v1/', include('api.urls')),
+    path("ckeditor5/", include('django_ckeditor_5.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

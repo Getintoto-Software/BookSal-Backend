@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
 import uuid
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class Futsal(models.Model):
@@ -37,14 +38,14 @@ class Futsal(models.Model):
     # On false display indoor. On True display open ground
     open_ground = models.BooleanField(default=False)
 
-    futsal_description = models.TextField(default="")
+    futsal_description = CKEditor5Field('Text', config_name='extends')
 
     # Date Created and Updated
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return self.futsal_name
 
 
 class Booking(models.Model):
@@ -61,4 +62,4 @@ class Booking(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.futsal.name + ' - ' + self.user.username + ' - ' + str(self.booking_date)
+        return self.user.username + ' - ' + self.futsal.futsal_name + ' - ' + str(self.booking_date)
