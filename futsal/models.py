@@ -38,7 +38,7 @@ class Futsal(models.Model):
     # On false display indoor. On True display open ground
     open_ground = models.BooleanField(default=False)
 
-    futsal_description = CKEditor5Field('Text', config_name='extends')
+    futsal_description = CKEditor5Field('Futsal Description', config_name='extends')
 
     # Date Created and Updated
     date_created = models.DateTimeField(auto_now_add=True)

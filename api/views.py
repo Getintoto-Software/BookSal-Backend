@@ -84,11 +84,16 @@ class FutsalDeleteAPIView(DestroyAPIView):
 
 # Booking Views
 
+# Change this queryset to only render bookings of a certain futsal at a time.
+# reduce the load on the server.
+
 
 class BookingListAPIView(ListAPIView):
-    queryset = Booking.objects.all()
     serializer_class = BookingModelSerializer
     permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        return Booking.objects.filter(futsal=self.kwargs['pk'])
 
 
 class BookingCreateAPIView(CreateAPIView):

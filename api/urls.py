@@ -19,22 +19,24 @@ urlpatterns = [
     path("futsal/list-futsals/", FutsalListAPIView.as_view(), name="list-futsals"),
     path("futsal/create-futsal/",
          FutsalCreateAPIView.as_view(), name="create-futsal"),
-    path("futsal/retrieve-futsal/<int:pk>/",
+    path("futsal/retrieve-futsal/<str:pk>/",
          FutsalRetrieveAPIView.as_view(), name="retrieve-futsal"),
-    path("futsal/update-futsal/<int:pk>/",
+    path("futsal/update-futsal/<str:pk>/",
          FutsalUpdateAPIView.as_view(), name="update-futsal"),
-    path("futsal/delete-futsal/<int:pk>/",
+    path("futsal/delete-futsal/<str:pk>/",
          FutsalDeleteAPIView.as_view(), name="delete-futsal"),
 
-    path("booking/list-bookings/",
+    #     Change the urls such that only the bookings of one futsal are retrieved at a time. To remove strain.
+
+    path("booking/list-bookings/<str:pk>/",
          BookingListAPIView.as_view(), name="list-bookings"),
     path("booking/create-booking/",
          BookingCreateAPIView.as_view(), name="create-booking"),
-    path("booking/retrieve-booking/<int:pk>/",
+    path("booking/retrieve-booking/<str:pk>/",
          BookingRetrieveAPIView.as_view(), name="retrieve-booking"),
-    path("booking/update-booking/<int:pk>/",
+    path("booking/update-booking/<str:pk>/",
          BookingUpdateAPIView.as_view(), name="update-booking"),
-    path("booking/delete-booking/<int:pk>/",
+    path("booking/delete-booking/<str:pk>/",
          BookingDeleteAPIView.as_view(), name="delete-booking"),
 
 ]
