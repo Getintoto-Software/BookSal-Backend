@@ -19,6 +19,13 @@ class Futsal(models.Model):
     futsal_image_5 = models.ImageField(
         upload_to='images/futsal_images/', blank=True, null=True)
 
+    # Base Price Per Hour
+    price_per_hour = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0.00)
+    # Descriptive Price table
+    price_table = CKEditor5Field(
+        'Price Table', config_name='extends', default="")
+
     # Futsal will need location, google maps link
     location = models.CharField(max_length=400)
     google_maps_link = models.URLField(blank=True, null=True)
@@ -38,7 +45,8 @@ class Futsal(models.Model):
     # On false display indoor. On True display open ground
     open_ground = models.BooleanField(default=False)
 
-    futsal_description = CKEditor5Field('Futsal Description', config_name='extends')
+    futsal_description = CKEditor5Field(
+        'Futsal Description', config_name='extends')
 
     # Date Created and Updated
     date_created = models.DateTimeField(auto_now_add=True)
