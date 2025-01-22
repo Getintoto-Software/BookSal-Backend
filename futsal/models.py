@@ -8,6 +8,7 @@ class Futsal(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     futsal_name = models.CharField(max_length=200)
     futsal_owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    futsal_phone_number = models.BigIntegerField(default=9841111111)
     # Image of the futsal, at least one required.
     futsal_image_1 = models.ImageField(upload_to='images/futsal_images/')
     futsal_image_2 = models.ImageField(
