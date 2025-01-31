@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-5n256=v&e19^$9z!(xl4o8ayha^!)e!c1jhp!-hf_mkl0_*o0h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', "apibooksal.getintoto.com"]
+ALLOWED_HOSTS = ['127.0.0.1', "apibooksal.getintoto.com", "localhost"]
 
 
 # Application definition
