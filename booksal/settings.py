@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-5n256=v&e19^$9z!(xl4o8ayha^!)e!c1jhp!-hf_mkl0_*o0h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["apibooksal.getintoto.com"]
 
 
 # Application definition
@@ -163,6 +163,31 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ],
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Allow Vue.js frontend
+    "http://127.0.0.1:8000",
+    "https://apibooksal.getintoto.com"
+
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "OPTIONS",
+    "PUT",
+    "DELETE",
+]
+
+CORS_ALLOW_HEADERS = [
+    "authorization",
+    "content-type",
+]
 
 MIDDLEWARE = [
     # Cors Middleware
