@@ -5,11 +5,13 @@ import uuid
 
 
 class UserProfile(models.Model):
+    first_name = models.CharField(max_length=255, blank=True, null=True)
+    last_name = models.CharField(max_length=255, blank=True, null=True)
     # General User Information
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True)
     # use the email address to verify user. Only verified user can become futsal admin.
-    email_address = models.EmailField()
+    email_address = models.EmailField(blank=True, null=True)
     profile_picture = models.ImageField(
         upload_to='images/profile_pictures/', blank=True, null=True)
     bio = models.TextField(max_length=500, blank=True, null=True)

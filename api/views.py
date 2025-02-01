@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from .serializers import UserProfileModelSerializer
-from .serializers import FutsalModelSerializer, BookingModelSerializer
+from .serializers import FutsalModelSerializer, BookingModelSerializer, BookingReadModelSerializer
 from userprofile.models import UserProfile
 from futsal.models import Futsal, Booking
 # import listapi class from rest framework
@@ -89,7 +89,7 @@ class FutsalDeleteAPIView(DestroyAPIView):
 
 
 class BookingListAPIView(ListAPIView):
-    serializer_class = BookingModelSerializer
+    serializer_class = BookingReadModelSerializer
     permission_classes = [AllowAny]
 
     def get_queryset(self):
