@@ -1,5 +1,5 @@
 from userprofile.models import UserProfile
-from futsal.models import Futsal, Booking
+from futsal.models import Futsal, Booking, Contact
 from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.serializers import Serializer
@@ -34,4 +34,10 @@ class BookingReadModelSerializer(ModelSerializer):
 
     class Meta:
         model = Booking
+        fields = "__all__"
+
+
+class ContactModelSerializer(ModelSerializer):
+    class Meta:
+        model = Contact
         fields = "__all__"

@@ -1,6 +1,6 @@
 from django.urls.conf import path
 from .views import UserProfileCreateAPIView, UserProfileRetrieveAPIView, UserProfileUpdateAPIView, UserProfileDeleteAPIView, UserProfileListAPIView
-from .views import FutsalListAPIView, FutsalCreateAPIView, FutsalRetrieveAPIView, FutsalUpdateAPIView, FutsalDeleteAPIView
+from .views import FutsalListAPIView, FutsalCreateAPIView, FutsalRetrieveAPIView, FutsalUpdateAPIView, FutsalDeleteAPIView, ContactCreateAPIView
 from .views import BookingListAPIView, BookingCreateAPIView, BookingRetrieveAPIView, BookingUpdateAPIView, BookingDeleteAPIView
 
 
@@ -38,5 +38,9 @@ urlpatterns = [
          BookingUpdateAPIView.as_view(), name="update-booking"),
     path("booking/delete-booking/<str:pk>/",
          BookingDeleteAPIView.as_view(), name="delete-booking"),
+
+    # Url for contact api
+    path("contact/create-contact/",
+         ContactCreateAPIView.as_view(), name="create-contact")
 
 ]

@@ -72,3 +72,13 @@ class Booking(models.Model):
 
     def __str__(self):
         return self.user.username + ' - ' + self.futsal.futsal_name + ' - ' + str(self.booking_date)
+
+
+class Contact(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=512)
+    message = models.TextField()
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user
