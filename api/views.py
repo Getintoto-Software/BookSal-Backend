@@ -167,11 +167,16 @@ class FindMatchAPIView(APIView):
 
         players = cache.get(PLAYERS_CACHE_KEY, [])
 
+        # If the queue is empty, inform the user.
+        if not players:
+            return Response({"message": "No players in the queue. Please wait for others."}, status=status.HTTP_200_OK)
+
         # Add user to queue if they are not already in it
         if not any(p["user_id"] == user_id for p in players):
             players.append(
                 {"user_id": user_id, "latitude": user_lat, "longitude": user_lon})
             cache.set(PLAYERS_CACHE_KEY, players, timeout=None)
+            print(players)
 
         # Find the closest available player
         closest_player = None
