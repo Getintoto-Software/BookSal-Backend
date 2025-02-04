@@ -3,6 +3,7 @@ from futsal.models import Futsal, Booking, Contact
 from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.serializers import Serializer
+from rest_framework import serializers
 
 
 class UserModelSerializer(ModelSerializer):
@@ -41,3 +42,18 @@ class ContactModelSerializer(ModelSerializer):
     class Meta:
         model = Contact
         fields = "__all__"
+
+
+class FindMatchSerializer(serializers.Serializer):
+    user_id = serializers.CharField(max_length=100)
+    latitude = serializers.FloatField()
+    longitude = serializers.FloatField()
+
+
+class JoinMatchSerializer(serializers.Serializer):
+    user_id = serializers.CharField(max_length=100)
+    matched_user_id = serializers.CharField(max_length=100)
+
+
+class LeaveQueueSerializer(serializers.Serializer):
+    user_id = serializers.CharField(max_length=100)

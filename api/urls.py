@@ -1,8 +1,8 @@
 from django.urls.conf import path
-from .views import UserProfileCreateAPIView, UserProfileRetrieveAPIView, UserProfileUpdateAPIView, UserProfileDeleteAPIView, UserProfileListAPIView
+from .views import UserProfileCreateAPIView, UserProfileRetrieveAPIView, UserProfileUpdateAPIView, UserProfileDeleteAPIView, UserProfileListAPIView, UserRetrieveAPIView
 from .views import FutsalListAPIView, FutsalCreateAPIView, FutsalRetrieveAPIView, FutsalUpdateAPIView, FutsalDeleteAPIView, ContactCreateAPIView
 from .views import BookingListAPIView, BookingCreateAPIView, BookingRetrieveAPIView, BookingUpdateAPIView, BookingDeleteAPIView
-
+from .views import FindMatchAPIView, JoinMatchAPIView, LeaveQueueAPIView
 
 urlpatterns = [
     path("user/profile/create-user-profile/",
@@ -41,6 +41,12 @@ urlpatterns = [
 
     # Url for contact api
     path("contact/create-contact/",
-         ContactCreateAPIView.as_view(), name="create-contact")
+         ContactCreateAPIView.as_view(), name="create-contact"),
+    path("auth/user/<int:pk>/", UserRetrieveAPIView.as_view(), name="user-get"),
 
+
+    # For Matchmaking API
+    path('find-match/', FindMatchAPIView.as_view(), name="find-match"),
+    path('join-match/', JoinMatchAPIView.as_view(), name="join-match"),
+    path('leave-queue/', LeaveQueueAPIView.as_view(), name="leave-queue"),
 ]
