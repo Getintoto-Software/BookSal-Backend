@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['127.0.0.1', "apibooksal.getintoto.com", "localhost"]
 
 INSTALLED_APPS = [
     # Third Party Applications
+    "daphne",
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'django_ckeditor_5',
+    'channels',
 
 
     # Django Default Applications
@@ -222,7 +224,14 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'booksal.wsgi.application'
+# WSGI_APPLICATION = 'booksal.wsgi.application'
+ASGI_APPLICATION = "booksal.asgi.application"  # Replace with your project name
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",  # Use Redis in production
+    },
+}
 
 
 # Database
