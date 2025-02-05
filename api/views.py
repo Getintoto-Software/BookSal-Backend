@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from .serializers import UserProfileModelSerializer, UserModelSerializer
-from .serializers import FutsalModelSerializer, BookingModelSerializer, BookingReadModelSerializer, ContactModelSerializer
+from .serializers import FutsalModelSerializer, BookingModelSerializer, BookingReadModelSerializer, ContactModelSerializer, MatchmakingRoomSerializer
 from userprofile.models import UserProfile
-from futsal.models import Futsal, Booking, Contact
+from futsal.models import Futsal, Booking, Contact, Matchmaking
 # import listapi class from rest framework
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
@@ -21,6 +21,12 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.core.cache import cache
 from math import radians, sin, cos, sqrt, atan2
+
+
+class MatchmakingListAPIView(ListAPIView):
+    queryset = Matchmaking.objects.filter(
+        is_active=True)  # Only active rooms
+    serializer_class = MatchmakingRoomSerializer
 
 
 class UserProfileCreateAPIView(CreateAPIView):

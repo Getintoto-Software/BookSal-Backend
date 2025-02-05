@@ -1,9 +1,21 @@
 from userprofile.models import UserProfile
-from futsal.models import Futsal, Booking, Contact
+from futsal.models import Futsal, Booking, Contact, Matchmaking
 from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.serializers import Serializer
 from rest_framework import serializers
+
+
+class MatchmakingRoomSerializer(serializers.ModelSerializer):
+    player1_username = serializers.CharField(
+        source="player_1.username", read_only=True)
+    player2_username = serializers.CharField(
+        source="player_2.username", read_only=True)
+
+    class Meta:
+        model = Matchmaking
+        fields = ['id', 'player_1', 'player1_username', 'player_2',
+                  'player2_username', 'created_at', 'is_active']
 
 
 class UserModelSerializer(ModelSerializer):

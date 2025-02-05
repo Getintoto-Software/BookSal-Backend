@@ -85,12 +85,16 @@ class Contact(models.Model):
 
 
 class Matchmaking(models.Model):
-    player = models.ForeignKey(User, on_delete=models.CASCADE)
+    player_1 = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name=f'player_1')
+    player_2 = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name=f'player_2', blank=True, null=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
+    is_active = models.BooleanField(default=True)
     status = models.CharField(max_length=20, choices=[(
-        'waiting', 'Waiting'), ('matched', 'Matched')], default='waiting')
+        'waiting', 'Waiting'), ('matched', 'Matched')], default='waiting', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.player.username
+        return str(self.player_1) + ' - ' + str(self.player_2)

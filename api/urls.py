@@ -1,6 +1,6 @@
 from django.urls.conf import path
 from .views import UserProfileCreateAPIView, UserProfileRetrieveAPIView, UserProfileUpdateAPIView, UserProfileDeleteAPIView, UserProfileListAPIView, UserRetrieveAPIView
-from .views import FutsalListAPIView, FutsalCreateAPIView, FutsalRetrieveAPIView, FutsalUpdateAPIView, FutsalDeleteAPIView, ContactCreateAPIView
+from .views import FutsalListAPIView, FutsalCreateAPIView, FutsalRetrieveAPIView, FutsalUpdateAPIView, FutsalDeleteAPIView, ContactCreateAPIView, MatchmakingListAPIView
 from .views import BookingListAPIView, BookingCreateAPIView, BookingRetrieveAPIView, BookingUpdateAPIView, BookingDeleteAPIView
 from .views import FindMatchAPIView, JoinMatchAPIView, LeaveQueueAPIView
 
@@ -46,6 +46,7 @@ urlpatterns = [
 
 
     # For Matchmaking API
+    path('matchmaking/', MatchmakingListAPIView.as_view(), name='matchmaking-list'),
     path('find-match/', FindMatchAPIView.as_view(), name="find-match"),
     path('join-match/', JoinMatchAPIView.as_view(), name="join-match"),
     path('leave-queue/', LeaveQueueAPIView.as_view(), name="leave-queue"),
