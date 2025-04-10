@@ -3,7 +3,7 @@ from .views import UserProfileCreateAPIView, UserProfileRetrieveAPIView, UserPro
 from .views import FutsalListAPIView, FutsalCreateAPIView, FutsalRetrieveAPIView, FutsalUpdateAPIView, FutsalDeleteAPIView, ContactCreateAPIView, MatchmakingListAPIView
 from .views import BookingListAPIView, BookingCreateAPIView, BookingRetrieveAPIView, BookingUpdateAPIView, BookingDeleteAPIView
 from .views import FindMatchAPIView, JoinMatchAPIView, LeaveQueueAPIView
-
+from .views import UserBookingsListAPIView
 urlpatterns = [
     path("user/profile/create-user-profile/",
          UserProfileCreateAPIView.as_view(), name="create-user-profile"),
@@ -38,6 +38,8 @@ urlpatterns = [
          BookingUpdateAPIView.as_view(), name="update-booking"),
     path("booking/delete-booking/<str:pk>/",
          BookingDeleteAPIView.as_view(), name="delete-booking"),
+    path("booking/list-bookings/user/<int:user>/", UserBookingsListAPIView.as_view(),
+         name="list-user-bookings"),
 
     # Url for contact api
     path("contact/create-contact/",

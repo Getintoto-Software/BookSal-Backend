@@ -36,6 +36,16 @@ class FutsalModelSerializer(ModelSerializer):
         fields = "__all__"
 
 
+class UserBookingModelSerializer(ModelSerializer):
+    user = UserModelSerializer(read_only=True)
+    futsal = FutsalModelSerializer(read_only=True)
+
+    class Meta:
+        model = Booking
+        fields = ["id", "user", "futsal", "booking_date",
+                  "booking_start_time", "booking_end_time"]
+
+
 class BookingModelSerializer(ModelSerializer):
     class Meta:
         model = Booking

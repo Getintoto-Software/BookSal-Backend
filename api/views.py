@@ -15,6 +15,8 @@ from django.db.models import F, Func, FloatField, Value
 from django.http import JsonResponse
 import math
 
+# API for booking management
+from .serializers import UserBookingModelSerializer
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -53,6 +55,14 @@ class UserProfileUpdateAPIView(UpdateAPIView):
 
     def perform_update(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class UserBookingsListAPIView(ListAPIView):
+    serializer_class = UserBookingModelSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Booking.objects.filter(user=self.kwargs['user'])
 
 
 class UserProfileDeleteAPIView(DestroyAPIView):

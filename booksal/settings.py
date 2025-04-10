@@ -164,13 +164,20 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ],
+    # Remove the current ui and just show json response
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+
 }
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Allow Vue.js frontend
-    "http://127.0.0.1:8000",
-    "https://apibooksal.getintoto.com"
-
+    "http://127.0.0.1:8080",
+    "https://apibooksal.getintoto.com",
+    "http://apibooksal.getintoto.com",
+    "https://booksal.getintoto.com",
+    "http://booksal.getintoto.com",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -184,12 +191,24 @@ CORS_ALLOW_METHODS = [
     "OPTIONS",
     "PUT",
     "DELETE",
+    "PATCH",
 ]
 
+# Optional: Allow all headers if needed (adjust as per your requirements)
 CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
     "authorization",
     "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
 ]
+
+# Optional: Allow credentials (e.g., for authenticated requests with tokens)
+CORS_ALLOW_CREDENTIALS = True
 
 MIDDLEWARE = [
     # Cors Middleware

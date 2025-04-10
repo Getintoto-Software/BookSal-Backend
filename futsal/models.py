@@ -24,8 +24,7 @@ class Futsal(models.Model):
     price_per_hour = models.DecimalField(
         max_digits=10, decimal_places=2, default=0.00)
     # Descriptive Price table
-    price_table = CKEditor5Field(
-        'Price Table', config_name='extends', default="")
+    price_table = models.JSONField(blank=True, null=True)
 
     # Futsal will need location, google maps link
     location = models.CharField(max_length=400)
@@ -49,6 +48,8 @@ class Futsal(models.Model):
     futsal_description = CKEditor5Field(
         'Futsal Description', config_name='extends')
 
+    featured_futsal = models.BooleanField(default=False)
+
     # Date Created and Updated
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
@@ -66,6 +67,7 @@ class Booking(models.Model):
     booking_end_time = models.TimeField()
     # On false display pending. On True display confirmed
     booking_status = models.BooleanField(default=False)
+    booking_notes = models.TextField(blank=True, null=True)
 
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)

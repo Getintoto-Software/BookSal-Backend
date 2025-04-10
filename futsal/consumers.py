@@ -73,6 +73,7 @@ class MatchmakingConsumer(AsyncWebsocketConsumer):
                         "type": "match_joined",
                         "room_id": match.id,
                         "player_2_username": match.player_2.username,
+                        "player_1_username":  player_id,
                         "message": "You have joined the match as Player 2!"
                     }))
                 else:
