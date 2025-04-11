@@ -4,6 +4,7 @@ from .views import FutsalListAPIView, FutsalCreateAPIView, FutsalRetrieveAPIView
 from .views import BookingListAPIView, BookingCreateAPIView, BookingRetrieveAPIView, BookingUpdateAPIView, BookingDeleteAPIView
 from .views import FindMatchAPIView, JoinMatchAPIView, LeaveQueueAPIView
 from .views import UserBookingsListAPIView
+from .views import BlogPostListAPIView, BlogPostRetrieveAPIView
 urlpatterns = [
     path("user/profile/create-user-profile/",
          UserProfileCreateAPIView.as_view(), name="create-user-profile"),
@@ -52,4 +53,8 @@ urlpatterns = [
     path('find-match/', FindMatchAPIView.as_view(), name="find-match"),
     path('join-match/', JoinMatchAPIView.as_view(), name="join-match"),
     path('leave-queue/', LeaveQueueAPIView.as_view(), name="leave-queue"),
+    # For Blog api
+    path('blog/list-blogs/', BlogPostListAPIView.as_view(), name='blog-post-list'),
+    path('blog/retrieve-blog/<str:pk>/',
+         BlogPostRetrieveAPIView.as_view(), name='blog-post-detail'),
 ]

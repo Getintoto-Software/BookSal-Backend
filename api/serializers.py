@@ -4,6 +4,21 @@ from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework.serializers import Serializer
 from rest_framework import serializers
+from blog.models import BlogPost, Category
+
+
+class BlogCategoryModelSerializer(ModelSerializer):
+    class Meta:
+        model = Category
+        fields = "__all__"
+
+
+class BlogPostModelSerializer(ModelSerializer):
+    category = BlogCategoryModelSerializer(read_only=True)
+
+    class Meta:
+        model = BlogPost
+        fields = "__all__"
 
 
 class MatchmakingRoomSerializer(serializers.ModelSerializer):

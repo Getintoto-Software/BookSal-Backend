@@ -25,6 +25,20 @@ from django.core.cache import cache
 from math import radians, sin, cos, sqrt, atan2
 
 
+# API for blog management
+from .serializers import BlogPostModelSerializer
+from blog.models import  BlogPost
+
+class BlogPostListAPIView(ListAPIView):
+    queryset = BlogPost.objects.all()
+    serializer_class = BlogPostModelSerializer
+    permission_classes = [AllowAny]
+    
+class BlogPostRetrieveAPIView(RetrieveAPIView):
+    queryset = BlogPost.objects.all()
+    serializer_class = BlogPostModelSerializer
+    permission_classes = [AllowAny]
+
 class MatchmakingListAPIView(ListAPIView):
     queryset = Matchmaking.objects.filter(
         is_active=True)  # Only active rooms
